@@ -5,6 +5,8 @@ public class Main {
         table.put(111, "Juice");
         table.put(200, "Watermelon");
 
-        System.out.println(table.get(200));
+        System.out.println(table);
+        table.remove(111);
+        System.out.println(table);
     }
 }
