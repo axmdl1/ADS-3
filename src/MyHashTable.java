@@ -28,6 +28,11 @@ public class MyHashTable<K, V> {
             size = 0;
         }
 
+    /**
+     * Calculates the hash value for a given key.
+     * @param key The key value that needs to be calculated.
+     * @return The index in the hash table where element located.
+     */
         private int hash(K key){
             int getIndex = key.hashCode() % chainArray.length;
             if (getIndex > 0 || getIndex == 0)
@@ -36,6 +41,11 @@ public class MyHashTable<K, V> {
                 return getIndex * (-1);
         }
 
+    /**
+     * Inserts a key-value into the hash table.
+     * @param key The key to be inserted.
+     * @param value The value to be associated with key.
+     */
         public void put(K key, V value){
             int index = hash(key);
             HashNode<K,V> node = new HashNode<>(key, value);
@@ -47,7 +57,12 @@ public class MyHashTable<K, V> {
             size++;
         }
 
-        public V get(K key){
+    /**
+     * Retrieves the value with given key from hash table.
+     * @param key The key whose associated value is to be retrieved.
+     * @return The value with the given key, or null if key is not found.
+     */
+    public V get(K key){
             if (key == null){
                 throw new IllegalArgumentException("Key is null !");
             }
