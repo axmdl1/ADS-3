@@ -108,6 +108,50 @@ public class MyHashTable<K, V> {
     }
 
     /**
+     * This method checks the hash table contains the specific value.
+     * @param value The value to be checked for existence.
+     * @return True if hash table contains value, false otherwise.
+     */
+    public boolean contains(V value){
+        for (int i = 0; i < chainArray.length; i++) {
+            HashNode<K,V> node = chainArray[i];
+            while (node != null){
+                if (node.value.toString().toLowerCase().equals(value)){
+                    return true;
+                }
+                node = node.next;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Retrieves the key of value in the hash table.
+     * @param value The value for which to retrieve.
+     * @return The key if it's found, null otherwise.
+     */
+    public K getKey(V value){
+        for (int i = 0; i < chainArray.length; i++) {
+            HashNode<K,V> node = chainArray[i];
+            while (node != null){
+                if (node.value.toString().toLowerCase().equals(value)) {
+                    return node.key;
+                }
+                node = node.next;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * This method shows length of hash table.
+     * @return Size of hash table.
+     */
+    public int size(){
+        return size;
+    }
+
+    /**
      * toString method, representation of hash table.
      * @return string instead of garbage.
      */

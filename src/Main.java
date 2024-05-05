@@ -8,5 +8,9 @@ public class Main {
         System.out.println(table);
         table.remove(111);
         System.out.println(table);
+        System.out.println(table.contains("watermelon"));
+        System.out.println(table.getKey("apple"));
+        table.put(142, "Potato");
+        System.out.println(table.size());
     }
 }
