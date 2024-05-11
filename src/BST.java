@@ -7,24 +7,61 @@ public class BST<K extends Comparable<K>, V> {
         public Node (K key, V val){
             this.key = key;
             this.val = val;
+            left = right = null;
         }
     }
 
-    public void put(K key, V val){
-        root = putRecursive(root, key, val);
+    public void insert(K key, V val){
+        root = insert(root, key, val);
     }
 
-    private Node putRecursive(Node root, K key, V val){
+    private Node insert(Node root, K key, V val){
         if (root == null)
             return new Node(key, val);
 
         if (key.compareTo(root.key) < 0){
-            root.left = putRecursive(root.left, key, val); 
+            root.left = insert(root.left, key, val);
         } else if (key.compareTo(root.key) > 0) {
-            root.right = putRecursive(root.right, key, val);
+            root.right = insert(root.right, key, val);
         }else {
             root.val = val;
         }
         return root;
+    }
+
+    public void inOrder(){}
+
+    public void remove(K key, V val){
+        root = remove(root, key, val);
+    }
+
+    private Node remove(Node curr, K key, V val){
+        if (curr == null){
+            return null;
+        }
+
+        int compare = key.compareTo(curr.key);
+        if (compare < 0 ){
+            curr.left = remove(curr.left, key, val); 
+        } else if (compare > 0 ) {
+            curr.right = remove(curr, key, val);
+        } else {
+            //case 1: one child
+            if (curr.left == null)
+                return curr.right;
+            else if (curr.right == null)
+                return curr.left;
+
+            //case 2: two child
+            Node smallestVal = findSmallestVal(curr.right);
+            curr.key = smallestVal.key;
+            curr.val = smallestVal.val;
+            curr.right = remove(curr.right, key, val);
+        }
+        return curr;
+    }
+
+    private Node findSmallestVal(Node node){
+        return node.right == null ? node : findSmallestVal(node.right);
     }
 }
