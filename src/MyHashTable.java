@@ -1,11 +1,8 @@
-import java.util.Arrays;
-
 public class MyHashTable<K, V> {
     private class HashNode<K, V> {
         private K key;
         private V value;
         private HashNode<K, V> next;
-
         public HashNode(K key, V value) {
             this.key = key;
             this.value = value;
@@ -15,6 +12,7 @@ public class MyHashTable<K, V> {
         public String toString() {
             return "{" + key + " " + value + "}";
         }
+
     }
 
     private HashNode<K, V>[] chainArray;
@@ -51,6 +49,7 @@ public class MyHashTable<K, V> {
     public void put(K key, V value){
         int index = hash(key);
         HashNode<K,V> node = new HashNode<>(key, value);
+
         if (chainArray[index] != null){
             node.next = chainArray[index];
         }
