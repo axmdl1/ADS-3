@@ -11,10 +11,23 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * Inserts a key-value pair into the binary search tree.
+     * If the key exists, updates the corresponding value.
+     * @param key The key of the element to insert.
+     * @param val The value associated with the key
+     */
     public void insert(K key, V val){
         root = insert(root, key, val);
     }
 
+    /**
+     * Helper method for inserting a key-value pair into the binary search tree.
+     * @param root The root node of the subtree.
+     * @param key The key of the element to insert.
+     * @param val The value associated with the key.
+     * @return The root node of the modified subtree.
+     */
     private Node insert(Node root, K key, V val){
         if (root == null)
             return new Node(key, val);
@@ -29,10 +42,17 @@ public class BST<K extends Comparable<K>, V> {
         return root;
     }
 
+    /**
+     * Traverses the binary search tree in in-order fashion and prints the key-value pairs.
+     */
     public void inOrder(){
         inOrder(root);
     }
 
+    /**
+     * Helper method for in-order traversal of the binary search tree.
+     * @param node The current node being visited.
+     */
     private void inOrder(Node node){
         if (node != null){
             inOrder(node.left);
@@ -41,16 +61,32 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * Retrieves the key associated with a given value in the binary search tree.
+     * @param val The value for which to find the associated key.
+     * @return The key associated with the value, or null if the value is not found.
+     */
     public K getKey(V val){
         Node node = findForKey(root, val);
         return node != null ? node.key : null;
     }
 
+    /**
+     * Retrieves the value associated with a given key in the binary search tree.
+     * @param key The key for which to find the associated value.
+     * @return The value associated with the key, or null if the key is not found.
+     */
     public V getVal(K key){
         Node node = findForVal(root, key);
         return node != null ? node.val : null;
     }
 
+    /**
+     * Helper method to find a node with the specified value in the binary search tree.
+     * @param node The current node being examined.
+     * @param val The value to search for.
+     * @return The node containing the specified value, or null if not found.
+     */
     private Node findForKey(Node node, V val) {
         if (node == null)
             return null;
@@ -65,6 +101,12 @@ public class BST<K extends Comparable<K>, V> {
         return findForKey(node.right, val);
     }
 
+    /**
+     * Helper method to find a node with the specified key in the binary search tree.
+     * @param node The current node being examined.
+     * @param key The key to search for.
+     * @return The node containing the specified key, or null if not found.
+     */
     private Node findForVal(Node node, K key) {
         if (node == null)
             return null;
@@ -79,10 +121,20 @@ public class BST<K extends Comparable<K>, V> {
         return findForVal(node.right, key);
     }
 
+    /**
+     * Removes a node with the specified key from the binary search tree.
+     * @param key The key of the node to remove.
+     */
     public void remove(K key){
         root = remove(root, key);
     }
 
+    /**
+     * Helper method to remove a node with the specified key from the binary search tree.
+     * @param node The current node being examined.
+     * @param key The key of the node to remove.
+     * @return The root of the modified subtree after removal.
+     */
     private Node remove(Node node, K key){
         if (node == null){
             return null;
@@ -113,14 +165,28 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
+    /**
+     * Helper method to find the node with the smallest key in a subtree.
+     * @param node The root node of the subtree.
+     * @return The node with the smallest key.
+     */
     private Node findSmallestVal(Node node){
         return node.right == null ? node : findSmallestVal(node.right);
     }
 
+    /**
+     * Calculates the number of nodes in the binary search tree.
+     * @return The number of nodes in the tree.
+     */
     public int size(){
         return size(root);
     }
 
+    /**
+     * Helper method to calculate the number of nodes in a subtree rooted at the given node.
+     * @param node The root node of the subtree.
+     * @return The number of nodes in the subtree.
+     */
     private int size(Node node){
         if (node == null){
             return 0;
