@@ -1,6 +1,6 @@
 Assignment 3! 
 
-* Author: Akhmedali Duisembaiuly
+* Author: axmdl1
 * Course: Algorithm and Data Structure
 
 This project is an implementation of a simple hash table in the Java programming language. 
