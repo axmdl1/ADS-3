@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class MyHashTable<K, V> {
     private class HashNode<K, V> {
         private K key;
@@ -20,12 +23,12 @@ public class MyHashTable<K, V> {
     private int size;
 
     public MyHashTable(){
-        chainArray = new HashNode[10];
+        chainArray = new HashNode[M];
     }
 
     public MyHashTable(int M){
-        chainArray = new HashNode[M];
-        size = 0;
+        this.M = size;
+        this.chainArray = new HashNode[size];
     }
 
     /**
@@ -140,6 +143,18 @@ public class MyHashTable<K, V> {
             }
         }
         return null;
+    }
+
+    public Set<K> keySet(){
+        Set<K> keySet = new HashSet<>();
+        for (int i = 0; i < M; i++) {
+            HashNode<K, V> curr = chainArray[i];
+            while (curr != null){
+                keySet.add(curr.key);
+                curr=curr.next;
+            }
+        }
+        return keySet;
     }
 
     /**

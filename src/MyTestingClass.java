@@ -18,7 +18,7 @@ public class MyTestingClass {
     @Override
     public int hashCode() {
         int prime = 31;
-        int res = 1;
+        int res = id;
         res = prime * res + id;
         res = prime * res + ((name == null) ? 0 : name.hashCode());
         return res;
