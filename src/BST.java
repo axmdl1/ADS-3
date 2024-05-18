@@ -1,6 +1,10 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Stack;
+
 public class BST<K extends Comparable<K>, V> {
     private Node root;
-    private class Node{
+    public class Node{
         private K key;
         private V val;
         private Node left, right;
@@ -8,6 +12,22 @@ public class BST<K extends Comparable<K>, V> {
             this.key = key;
             this.val = val;
             left = right = null;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public void setKey(K key) {
+            this.key = key;
+        }
+
+        public V getVal() {
+            return val;
+        }
+
+        public void setVal(V val) {
+            this.val = val;
         }
     }
 
@@ -195,7 +215,40 @@ public class BST<K extends Comparable<K>, V> {
         }
     }
 
-    public Iterable<K> iterator(){
-        return null;
+    public Iterable<Node> iterator() {
+        Stack<Node> stack = new Stack<>();
+        return new Iterable<Node>() {
+            @Override
+            public Iterator<Node> iterator() {
+                return new Iterator<>() {
+                    {
+                        pushLeft(root);
+                    }
+
+                    private void pushLeft(Node node) {
+                        while (node != null) {
+                            stack.push(node);
+                            node = node.left;
+                        }
+                    }
+
+                    @Override
+                    public boolean hasNext() {
+                        return !stack.isEmpty();
+                    }
+
+                    @Override
+                    public Node next() {
+                        if (!hasNext()) {
+                            throw new NoSuchElementException();
+                        }
+
+                        Node node = stack.pop();
+                        pushLeft(node.right);
+                        return node;
+                    }
+                };
+            }
+        };
     }
 }
