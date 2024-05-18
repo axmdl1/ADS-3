@@ -1,21 +1,6 @@
 import java.util.Random;
 
-public class Student {
-    private String firstname;
-    private String lastname;
-
-    public Student(String firstname, String lastname){
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
-
-    @Override
-    public String toString() {
-        return "Student [ Surname: " + lastname + " Name " + firstname + " ]";
-    }
-}
-
-class TestHashtable{
+public class TestHashtable{
     public static void main(String[] args) {
         MyHashTable<MyTestingClass, Student> myHashTable = new MyHashTable<>();
         MyTestingClass test;
@@ -32,5 +17,20 @@ class TestHashtable{
             size[index]++;
             System.out.println(index + 1 + "=" + size[index]);
         }
+    }
+}
+
+class Student {
+    private String firstname;
+    private String lastname;
+
+    public Student(String firstname, String lastname){
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [ Surname: " + lastname + " Name " + firstname + " ]";
     }
 }
